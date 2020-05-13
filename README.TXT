@@ -8,10 +8,11 @@ Windows
   1. mkdir c:\proctorx\win
   2. copy the following to this foloer
     -- icon.ico          (from proctorx/res/icons)
-    -- java.xml          (downloaded from freelancer files)
-    -- makentheye.bat    (the command to make installation package, from freelancer files)
+    -- java.xml          (from installbuilder java, with small modification)
+    -- makentheye.bat    (the command to make installation package
+                           Modify the install location of installbuilder)
     -- NthEye.jar        (exported from eclipse)
-    -- NthEye-win.xml    (InstallBuilder project file, downloaded from freelancer files)
+    -- NthEye-win.xml    (InstallBuilder project file)
     -- java-windows      (from InstallBuilder java redistributable)
     -- native            (from source code)
   3. run makentheye.bat in c:\proctorx\win folder
