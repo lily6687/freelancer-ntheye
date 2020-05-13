@@ -13,7 +13,8 @@ ALL_COMPONENTS = \
 	bin/launcher.sh \
 	bin/NthEye.jar \
 	bin/libjfxwebkit.so \
-	adrmdesktopshortcut.sh
+	adrmdesktopshortcut.sh \
+	java-linux-x64
 
 $(PROJECT_FILE): NthEye-linux.xml
 	sed 's#@@installersource@@#$(PWD)#' $? > $@
