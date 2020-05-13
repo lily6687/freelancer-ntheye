@@ -1,0 +1,146 @@
+<project>
+    <shortName>NthEye</shortName>
+    <fullName>NthEye</fullName>
+    <version>1.0</version>
+    <componentList>
+        <component>
+            <name>default</name>
+            <description>Default Component</description>
+            <canBeEdited>1</canBeEdited>
+            <selected>1</selected>
+            <show>1</show>
+            <folderList>
+                <folder>
+                    <description>Program Files</description>
+                    <destination>${installdir}</destination>
+                    <name>programfiles</name>
+                    <platforms>all</platforms>
+                    <distributionFileList>
+                        <distributionDirectory>
+                            <origin>@@installersource@@/adrmdesktopshortcut.sh</origin>
+                        </distributionDirectory>
+                        <distributionDirectory>
+                            <origin>@@installersource@@/bin</origin>
+                        </distributionDirectory>
+                        <distributionDirectory>
+                            <origin>@@installersource@@/java-linux-x64</origin>
+                        </distributionDirectory>
+                        <distributionFile>
+                            <origin>@@installersource@@/ntheye.desktop</origin>
+                        </distributionFile>
+                        <distributionFile>
+                            <origin>@@installersource@@/icon.png</origin>
+                        </distributionFile>
+                    </distributionFileList>
+                    <shortcutList>
+                        <shortcut>
+                            <comment>Uninstall</comment>
+                            <exec>${installdir}/${uninstallerName}</exec>
+                            <icon></icon>
+                            <name>Uninstall ${product_fullname}</name>
+                            <path>${installdir}</path>
+                            <platforms>all</platforms>
+                            <runAsAdmin>0</runAsAdmin>
+                            <runInTerminal>0</runInTerminal>
+                            <windowsExec>${installdir}/${uninstallerName}.exe</windowsExec>
+                            <windowsExecArgs></windowsExecArgs>
+                            <windowsIcon></windowsIcon>
+                            <windowsPath>${installdir}</windowsPath>
+                        </shortcut>
+                    </shortcutList>
+                </folder>
+                <folder>
+                    <description>Program Files</description>
+                    <destination>${installdir}</destination>
+                    <name>programfileslinux</name>
+                    <platforms>linux</platforms>
+                </folder>
+                <folder>
+                    <description>Program Files</description>
+                    <destination>${installdir}</destination>
+                    <name>programfileslinux64</name>
+                    <platforms>linux-x64</platforms>
+                </folder>
+                <folder>
+                    <description>Program Files</description>
+                    <destination>${installdir}</destination>
+                    <name>programfileswindows</name>
+                    <platforms>windows</platforms>
+                </folder>
+                <folder>
+                    <description>Program Files</description>
+                    <destination>${installdir}</destination>
+                    <name>programfilesosx</name>
+                    <platforms>osx</platforms>
+                </folder>
+            </folderList>
+            <startMenuShortcutList>
+                <startMenuShortcut>
+                    <comment>Uninstall ${product_fullname}</comment>
+                    <name>Uninstall ${product_fullname}</name>
+                    <runAsAdmin>0</runAsAdmin>
+                    <runInTerminal>0</runInTerminal>
+                    <windowsExec>${installdir}/${uninstallerName}.exe</windowsExec>
+                    <windowsExecArgs></windowsExecArgs>
+                    <windowsIcon></windowsIcon>
+                    <windowsPath>${installdir}/</windowsPath>
+                </startMenuShortcut>
+            </startMenuShortcutList>
+        </component>
+    </componentList>
+    <postInstallationActionList>
+        <substitute>
+            <files>${installdir}/ntheye.desktop</files>
+            <type>regexp</type>
+            <substitutionList>
+                <substitution>
+                    <pattern>@@installdir@@</pattern>
+                    <value>${installdir}</value>
+                </substitution>
+            </substitutionList>
+        </substitute>
+        <copyFile>
+            <destination>/usr/share/applications</destination>
+            <origin>${installdir}/ntheye.desktop</origin>
+        </copyFile>
+        <runProgram>
+            <program>/bin/chmod</program>
+            <programArguments>+x ${installdir}/bin/* ${installdir}/java-linux-x64/bin/*</programArguments>
+        </runProgram>
+        <runProgram>
+            <program>${installdir}/adrmdesktopshortcut.sh</program>
+            <programArguments>install ${installdir}/ntheye.desktop</programArguments>
+        </runProgram>
+    </postInstallationActionList>
+    <preUninstallationActionList>
+        <addFilesToUninstaller>
+            <files>/usr/share/applications/ntheye.desktop</files>
+        </addFilesToUninstaller>
+        <runProgram>
+            <program>${installdir}/adrmdesktopshortcut.sh</program>
+            <programArguments>uninstall ${installdir}/ntheye.desktop</programArguments>
+        </runProgram>
+        <deleteFile>
+            <path>/usr/share/applications/ntheye.desktop</path>
+        </deleteFile>
+    </preUninstallationActionList>
+    <enableRollback>1</enableRollback>
+    <enableTimestamp>1</enableTimestamp>
+    <vendor>NthEye</vendor>
+    <parameterList>
+        <directoryParameter>
+            <name>installdir</name>
+            <description>Installer.Parameter.installdir.description</description>
+            <explanation>Installer.Parameter.installdir.explanation</explanation>
+            <value></value>
+            <default>${platform_install_prefix}/${product_shortname}-${product_version}</default>
+            <allowEmptyValue>0</allowEmptyValue>
+            <ask>yes</ask>
+            <cliOptionName>prefix</cliOptionName>
+            <mustBeWritable>yes</mustBeWritable>
+            <mustExist>0</mustExist>
+            <width>30</width>
+        </directoryParameter>
+    </parameterList>
+</project>
+
